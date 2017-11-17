@@ -56,3 +56,37 @@ function VidAlga ($a,$b,$c,$d)
 	echo "Vidutinė alga:" . $b/$a . "<br/>";
 	echo "Pelnas:" .  ($d - $c - $b) . "<br/>";
 }
+
+///////////
+
+declare(strict_types=1);
+
+calculatePrices (250000, 0.3);
+
+function calculatePrices ($costs, $margin)
+{
+	$FIRST_CLASS = 10;
+	$BUSINESS_CLASS = 30;
+	$ECONOMY_CLASS = 280;
+
+	$PRICE_FIRST = 10000;
+	$PRICE_BUSINESS = 4000;
+	$PRICE_ECONOMY = 500;
+
+	$FILL_FIRST = 1;
+	$FILL_BUSINESS = 0.8;
+	$FILL_ECONOMY = 0.68;
+
+	$costs = calculateClass ($FIRST_CLASS, $PRICE_FIRST, $FILL_FIRST);
+	$costs += calculateClass ($BUSINESS_CLASS, $PRICE_BUSINESS, $FILL_BUSINESS);
+	$costs += calculateClass ($ECONOMY_CLASS, $PRICE_ECONOMY, $FILL_ECONOMY);
+
+	$costs = $costs * (1 + $margin);
+
+	echo $income - $costs;
+}
+
+function calculateClass(int $seats, int $price, float $fill) : float
+{
+	return $seats * $price * $fill;
+}
